@@ -143,7 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Text(
                                     snapshot.data["definitions"][index]["definition"]
-                                )
+                                ),
+                                Text(
+                                  "Example: "+ (snapshot.data["definitions"][index]["example"] == null ? "NA" : snapshot.data["definitions"][index]["example"]),
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
                               ], // Children
                             )
                           )
