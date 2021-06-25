@@ -58,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Searching for Word: "+_controller.text.trim()
+        ),
+      ),
       bottomSheet: BottomAppBar(
         child: PreferredSize(
           preferredSize: Size.fromHeight(48.0),
@@ -82,10 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       hintText: "Search for a word",
                       hintStyle: TextStyle(fontWeight: FontWeight.w700, color: Colors.blue),
                       contentPadding: const EdgeInsets.only(left: 24.0),
-                      enabledBorder: new OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(20)
-                      ),
                     ),
                   ),
                 ),
@@ -127,25 +127,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListBody(
                   children: <Widget>[
                     Container(
-                      color: Colors.blue[500],
-                      child: ListTile(
-                        leading: snapshot.data["definitions"][index]["image_url"] == null
-                            ? null
-                            : CircleAvatar(
-                          backgroundImage: NetworkImage(snapshot.data["definitions"][index]["image_url"]),
-                        ),
-                        title: Text(_controller.text.trim() + "(" + snapshot.data["definitions"][index]["type"] + ")"),
+                      child: Chip(label: Text( snapshot.data["definitions"][index]["type"]),
                       ),
                     ),
                     Card(
                           elevation: 10,
                           color: Colors.blue[100],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)
+                          ),
                         child:
                           Padding(
                             padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                                snapshot.data["definitions"][index]["definition"]
-                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                    snapshot.data["definitions"][index]["definition"]
+                                )
+                              ], // Children
+                            )
                           )
                       ),
                   ],
