@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Owls Dict',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -110,11 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (BuildContext ctx, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Center(
-                child: Row(
-                  children: [
-                    Image(image: image)
-                  ],
-                )
+                child:
+                Text("Enter a search word"),
               );
             }
 
@@ -130,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListBody(
                   children: <Widget>[
                     Container(
-                      color: Colors.grey[300],
+                      color: Colors.blue[500],
                       child: ListTile(
                         leading: snapshot.data["definitions"][index]["image_url"] == null
                             ? null
@@ -140,10 +137,17 @@ class _MyHomePageState extends State<MyHomePage> {
                         title: Text(_controller.text.trim() + "(" + snapshot.data["definitions"][index]["type"] + ")"),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(snapshot.data["definitions"][index]["definition"]),
-                    )
+                    Card(
+                          elevation: 10,
+                          color: Colors.blue[100],
+                        child:
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                                snapshot.data["definitions"][index]["definition"]
+                            ),
+                          )
+                      ),
                   ],
                 );
               },
